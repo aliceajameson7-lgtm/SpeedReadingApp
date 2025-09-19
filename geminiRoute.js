@@ -24,8 +24,9 @@ geminiRouter.get("/", async (req, res) => {
   contents: `Generate a random 10-line paragraph about a random topic. Write this paragraph at a ${req.session.gradeLevel} grade reading difficulty level.`
   });
 
-  res.json({ answer: response.text() });
+  res.json({ answer: response.response.text() });
 });
 
 export default geminiRouter;
+
 
