@@ -15,13 +15,21 @@ let wordsPerSecond;
 let startTime;
 let seconds;
 let paragraph;
-async function fetchParagraph(){
-    randomParagraph.textContent = "loading..."
+async function fetchParagraph() {
+  randomParagraph.textContent = "loading...";
+
+  try {
     const res = await fetch('https://speedreadingapp.onrender.com/randomGeneration');
-    paragraph = await res.json();
-    paragraph = paragraph.answer;
-    randomParagraph.textContent = paragraph;
-    
+    if (!res.ok) {
+      throw new Error(`Server error: ${res.status}`);
+    }
+
+    const data = await res.json();
+    randomParagraph.textContent = data.answer || "No paragraph returned";
+  } catch (err) {
+    console.error("Fetch paragraph failed:", err);
+    randomParagraph.textContent = "Error loading paragraph";
+  }
 }
 async function stop() {
     const time = Date.now() - startTime;
@@ -118,6 +126,7 @@ startBtn.addEventListener('click', start);
 stopBtn.addEventListener('click', stop);
 
 generateBtn.addEventListener('click', fetchParagraph);
+
 
 
 
