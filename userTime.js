@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import session from 'express-session';
 
 // Save time per user session
 router.post("/", (req, res) => {
@@ -24,3 +25,4 @@ router.get("/truncate", (req, res) => {
 });
 
 export default router;
+
