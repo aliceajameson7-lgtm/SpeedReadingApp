@@ -1,29 +1,22 @@
-import express from 'express';
-import session from 'express-session';
+import express from "express";
 import { GoogleGenAI } from "@google/genai";
 
 const geminiRouter = express.Router();
 
-geminiRouter.use(session({
-  secret: "your-secret-key",
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
-
-geminiRouter.post('/post', (req, res) => {
+// Save grade level into session
+geminiRouter.post("/post", (req, res) => {
   req.session.gradeLevel = req.body.selectedGrade;
   console.log("Stored grade level:", req.session.gradeLevel);
   res.json({ success: true, gradeLevel: req.session.gradeLevel });
 });
 
-
-geminiRouter.get('/', async (req, res) => {
+// Generate paragraph based on grade level
+geminiRouter.get("/", async (req, res) => {
   if (!req.session.gradeLevel) {
     return res.status(400).json({ error: "No grade level set yet." });
   }
 
-  const ai = new GoogleGenAI({ apiKey: "AIzaSyBOrS_xKSM-PQgg39FzpoTqi-UMVbJDeH0" });
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
   try {
     const response = await ai.models.generateContent({
@@ -31,13 +24,11 @@ geminiRouter.get('/', async (req, res) => {
       contents: `Generate a random 10-line paragraph about a random topic. Write this paragraph at a ${req.session.gradeLevel} grade reading difficulty level.`
     });
 
-    res.json({ answer: response.text() }); 
+    res.json({ answer: response.text() });
   } catch (error) {
     console.error("Error generating content:", error);
-    res.status(500).json({ error: "AI generation failed." });
+    res.status(500).json({ error: "AI generation failed.", details: error.message });
   }
 });
 
 export default geminiRouter;
-
-
