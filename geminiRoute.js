@@ -16,18 +16,19 @@ geminiRouter.get("/", async (req, res) => {
     return res.status(400).json({ error: "No grade level set yet." });
   }
 
-  const ai = new GoogleGenAI({ apiKey: "AIzaSyBOrS_xKSM-PQgg39FzpoTqi-UMVbJDeH0" });
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-lite",
+      contents: `Generate a random 10-line paragraph about a random topic. Write this paragraph at a ${req.session.gradeLevel} grade reading difficulty level.`
+    });
 
-  const response = await ai.models.generateContent({
-  model: "gemini-2.5-flash-lite",
-  contents: `Generate a random 10-line paragraph about a random topic. Write this paragraph at a ${req.session.gradeLevel} grade reading difficulty level.`
-  });
-
-  res.json({ answer: response.response.text() });
+    res.json({ answer: response.response.text() });
+  } catch (err) {
+    console.error("Error generating content:", err);
+    res.status(500).json({ error: "AI generation failed" });
+  }
 });
 
 export default geminiRouter;
-
-
-
