@@ -1,0 +1,260 @@
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #000000;
+  color: #fffafa;
+  padding: 2rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Headings */
+h1 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Random Paragraph area */
+#randomParagraph,
+#quickReader {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+  min-height: 60px;
+  background: #000000;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Buttons container */
+.buttons {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background: #3730a3;
+  transform: translateY(0);
+}
+
+/* Results section */
+#timeDisplay,
+#averageDisplay {
+  font-weight: bold;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+/* Saved times list */
+#allTimes {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 80%;
+  background: #000000;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 50px;
+  text-align: left;
+  font-size: 0.95rem;
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+/* Info section styling */
+div p {
+  margin: 0.7rem 0;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Quick reader text */
+#quickReader {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#speed {
+  background-color: #000000;
+  color: #ddd;
+}
+
+.links{
+  color: aqua;
+  background-color: aqua;
+}
+
+/* Form container */
+#form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background: #000000;
+  border: 1px solid #090a0a;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  width: fit-content;
+}
+
+/* Label text */
+#form label {
+  font-weight: 500;
+  color: #0062ff;
+  margin-right: 0.5rem;
+}
+
+/* Input box */
+#form input[type="number"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 80px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#form input[type="number"]:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+
+/* Button */
+#gradeBtn {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+#gradeBtn:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+#gradeBtn:active {
+  background: #3730a3;
+  transform: translateY(0);
+}
+/* Container for quick read controls */
+.quick-read-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+/* Stop button styled to stand out (red) */
+#stopQuickReadBtn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+#stopQuickReadBtn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+#stopQuickReadBtn:active {
+  background: #b91c1c;
+  transform: translateY(0);
+}
+
+/* Label */
+.quick-read-controls label {
+  font-weight: 500;
+  color: #374151;
+  margin-right: 0.25rem;
+}
+
+/* Input box */
+#speed {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 120px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#speed:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.25);
+  outline: none;
+}
+
+/* 📱 Responsive: stack neatly on small screens */
+@media (max-width: 500px) {
+  .quick-read-controls {
+    flex-direction: column;
+    align-items: stretch;
+    width: 90%;
+  }
+
+  #stopQuickReadBtn,
+  #speed {
+    width: 100%;
+  }
+}
+

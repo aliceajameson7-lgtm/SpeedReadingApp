@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to SpeedReader.com!</h1><img width="70" src="./images/ai-generated-colorful-brain-isolated-on-transparent-background-free-png.webp">
+    <div>
+    <p>
+        Click "Generate" to generate a random paragraph. Click "Start Timer" to begin a timer (it goes by seconds), and "Stop Timer" to display your time. Click "Show Times"
+        to display your average time quotien and your total trys. Click "Clear" to clear total trys. You can Also customize the grade
+        to your prefered level, which enhances vocabulary used, and sentence structure.
+    </p>
+    </div>
+    <form id="form">
+    Grade Level: <input type="number" id="gradeLevelInput" name="gradeLevelInput" min="1" max="12"><button id="gradeBtn" type="submit">Set Grade</button>
+    </form> 
+    <p id="randomParagraph">Set grade level, then click generate.</p>
+    
+    <div class="buttons">
+        <button id="generateBtn">Generate</button>
+        <button id="startBtn">Start Timer</button>
+        <button id="stopBtn">Stop Timer</button>
+        <button id="deleteTime">Clear</button>
+    </div>
+    <p id="timeDisplay"></p>
+    <p id="averageDisplay"></p>
+    <div id="allTimes">
+    </div>
+    <div>
+    <p>
+       Learning to read faster whilst maintaining efficiency can be major when studying, completing assignments, and during tests.
+       Improving your proccessing power will be a major factor in your development and your navigation through life.
+
+    </p>
+
+    <p>
+        This Reddit post and article is what originally inspired me to create this app. They provide useful information if you want to further improve this skill.
+    </p>
+    <a href="https://www.scotthyoung.com/blog/2015/01/19/speed-reading-redo" class="Links">I Was Wrong About Speed Reading: Here are the Facts</a><br>
+    <a href="https://www.reddit.com/r/books/comments/egq3xo/does_reading_a_lot_of_books_increase" class="Links">Does reading a lot of books increase significantly your normal reading speed?</a>
+    <p>
+       If you struggle with comphrehension and speed try the "Chunking" method.
+       Congregate words into phrases rather then reading individual words. This
+       Method takes pratice, but can be beneficiary when consuming text.
+    </p>
+    <p>
+        Example: "Betty likes to walk, and smell roses."
+        Splite this sentence into 2 phrases and read them each at once.
+                 "(Betty likes to walk), (and smell roses.)"
+    </p>
+    <p>
+        You can also utilize the "Tracer" method by tracing your finger (Or any other object) along the screen.
+        Doing this helps textual precision, and alleviates the process of reading long texts.
+    </p>
+    
+    </div>
+    
+
+
+
+    <h1>Quick Read!</h1>
+    <p>Show each word at a pace</p>
+
+
+    <p id="quickReader"></p>
+    <button id="beginQuickReadBtn">Begin</button>
+    <button id="stopQuickReadBtn">Stop</button> <p id="this">Speed(milliseconds)</p> <input id="speed" type="number">
+    <div>
+    <p>
+        This exersize assists compution speed, and will proggress your overall speed. Set the value above to your
+        prefered speed (Sec x 1000 = Ms).
+    </p>
+    </div>
+    <script src="./js/main.js">hello</script>
+</body>
+</html>
