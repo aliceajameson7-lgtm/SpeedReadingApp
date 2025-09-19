@@ -1,28 +1,41 @@
-import express from 'express'
-const geminiRouter = express.Router()
+import express from 'express';
+import session from 'express-session';
 import { GoogleGenAI } from "@google/genai";
 
-let newPost;
-geminiRouter.post('/post', async (req, res) => {
-    newPost = { gradeLevel: req.body.selectedGrade };
-    console.log(newPost);
-    
+const geminiRouter = express.Router();
+
+geminiRouter.use(session({
+  secret: "your-secret-key",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+geminiRouter.post('/post', (req, res) => {
+  req.session.gradeLevel = req.body.selectedGrade;
+  console.log("Stored grade level:", req.session.gradeLevel);
+  res.json({ success: true, gradeLevel: req.session.gradeLevel });
 });
+
+
 geminiRouter.get('/', async (req, res) => {
+  if (!req.session.gradeLevel) {
+    return res.status(400).json({ error: "No grade level set yet." });
+  }
 
-    const ai = new GoogleGenAI({ apiKey: "AIzaSyBOrS_xKSM-PQgg39FzpoTqi-UMVbJDeH0" });
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-    async function main() {
+  try {
     const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash-lite",
-        contents: `generate a random 10 line PARAGRAPH about a random topic. Write this paragraph at a ${newPost.gradeLevel} grade reading difficulty level.`
+      model: "gemini-2.5-flash-lite",
+      contents: `Generate a random 10-line paragraph about a random topic. Write this paragraph at a ${req.session.gradeLevel} grade reading difficulty level.`
     });
-    res.json({ answer: response.text });
-    }
-    
-    await main();
 
-})
+    res.json({ answer: response.text() }); 
+  } catch (error) {
+    console.error("Error generating content:", error);
+    res.status(500).json({ error: "AI generation failed." });
+  }
+});
 
 export default geminiRouter;
-
