@@ -23,7 +23,7 @@ geminiRouter.get('/', async (req, res) => {
     return res.status(400).json({ error: "No grade level set yet." });
   }
 
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  const ai = new GoogleGenAI({ apiKey: "AIzaSyBOrS_xKSM-PQgg39FzpoTqi-UMVbJDeH0" });
 
   try {
     const response = await ai.models.generateContent({
@@ -39,3 +39,4 @@ geminiRouter.get('/', async (req, res) => {
 });
 
 export default geminiRouter;
+
