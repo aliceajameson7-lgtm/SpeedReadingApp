@@ -17,7 +17,7 @@ let seconds;
 let paragraph;
 async function fetchParagraph(){
     randomParagraph.textContent = "loading..."
-    const res = await fetch('https://speedreadingapp.onrender.com/randomGeneration');
+    const res = await fetch('http://speedreadingapp.onrender.com/randomGeneration');
     paragraph = await res.json();
     paragraph = paragraph.answer;
     randomParagraph.textContent = paragraph;
@@ -118,5 +118,6 @@ startBtn.addEventListener('click', start);
 stopBtn.addEventListener('click', stop);
 
 generateBtn.addEventListener('click', fetchParagraph);
+
 
 
