@@ -17,7 +17,7 @@ let seconds;
 let paragraph;
 async function fetchParagraph(){
     randomParagraph.textContent = "loading..."
-    const res = await fetch('http://localhost:8000/randomGeneration')
+    const res = await fetch('http://speedreadingapp.onrender.com/randomGeneration')
     paragraph = await res.json();
     paragraph = paragraph.answer;
     randomParagraph.textContent = paragraph;
@@ -29,7 +29,7 @@ async function stop() {
     let words = paragraph.split(" ");
     wordsPerSecond = Math.round(words.length / seconds * 10) / 10;
     timeDisplay.textContent = `Time: ${seconds} Seconds | WPS: ${wordsPerSecond}`;
-    const res = await fetch('http://localhost:8000/times', {
+    const res = await fetch('http://speedreadingapp.onrender.com/times', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ async function displayTime() {
     const averageDisplay = document.querySelector('#averageDisplay');
     allTimes.innerHTML = '';
     averageDisplay.textContent = '';
-    const res = await fetch('http://localhost:8000/times');
+    const res = await fetch('http://speedreadingapp.onrender.com/times');
     const timeData = await res.json();
     let total = await timeData.reduce((acc, curr) => acc + curr.time, 0);
     total = Math.floor(total / timeData.length);
@@ -57,7 +57,7 @@ async function displayTime() {
     }
 }
 async function clearDatabase() {
-    const res = await fetch('http://localhost:8000/times/Truncate');
+    const res = await fetch('http://speedreadingapp.onrender.com/times/Truncate');
     console.log('Database Cleared');
     displayTime()
 }
@@ -101,7 +101,7 @@ async function setGradeLevel(e) {
     e.preventDefault()
     const formData = new FormData(form);
     const selectedGrade = formData.get('gradeLevelInput');
-    const res = await fetch('http://localhost:8000/randomGeneration/post', {
+    const res = await fetch('http://speedreadingapp.onrender.com/randomGeneration/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -116,4 +116,5 @@ beginQuickReadBtn.addEventListener('click', startQuickRead);
 deleteTime.addEventListener('click', clearDatabase);
 startBtn.addEventListener('click', start);
 stopBtn.addEventListener('click', stop);
+
 generateBtn.addEventListener('click', fetchParagraph);
