@@ -19,7 +19,9 @@ async function fetchParagraph() {
   randomParagraph.textContent = "loading...";
 
   try {
-    const res = await fetch('https://speedreadingapp.onrender.com/randomGeneration');
+    const res = await fetch('https://speedreadingapp.onrender.com/randomGeneration', {
+      credentials: "include"
+    });
     if (!res.ok) {
       throw new Error(`Server error: ${res.status}`);
     }
@@ -115,6 +117,7 @@ async function setGradeLevel(e) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ selectedGrade }),
+        credentials: "include"
     });
     console.log(res)
 }
@@ -126,6 +129,7 @@ startBtn.addEventListener('click', start);
 stopBtn.addEventListener('click', stop);
 
 generateBtn.addEventListener('click', fetchParagraph);
+
 
 
 
